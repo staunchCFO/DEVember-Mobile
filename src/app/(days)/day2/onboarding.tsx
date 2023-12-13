@@ -3,7 +3,12 @@ import React from 'react'
 import { View, Text, StyleSheet, SafeAreaView, Pressable, Platform } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons'
 import { GestureDetector, Gesture, Directions } from 'react-native-gesture-handler'
-import Animated, { FadeIn, FadeOut, SlideInRight, SlideOutLeft } from 'react-native-reanimated'
+import Animated, { 
+  FadeIn, 
+  FadeOut, 
+  SlideInRight, 
+  SlideOutLeft
+} from 'react-native-reanimated'
 
 
 const onboardingSteps = [
@@ -61,6 +66,20 @@ const Onboarding = () => {
     .onEnd(onBack)
   
   const swipes = Gesture.Simultaneous(swipeFBackward, swipeForward)
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setScreenIndex((prevIndex) => {
+        const newIndex = (prevIndex + 1) % onboardingSteps.length;
+        if (newIndex === (onboardingSteps.length - 1)) {
+          clearInterval(interval);
+        }
+        return newIndex;
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <SafeAreaView style={styles.page}>
