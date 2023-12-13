@@ -23,7 +23,7 @@ Integrate Markdown content in **React Native**
 const Day3 = () => {
   return (
     <SafeAreaView style={styles.page}>
-      <StatusBar style="light" />
+      <StatusBar style="auto" />
       <Stack.Screen options={{ title: "Day 3: Markdoown"}} />
 
       <MarkdownDisplay>{description}</MarkdownDisplay>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#15141a',
         padding: 20,
-        gap: 10
+        gap: 10,
     },
     button: {
         backgroundColor: '#302e38',

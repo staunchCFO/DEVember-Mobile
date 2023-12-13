@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Platform } from 'react-native';
 import React, { PropsWithChildren } from 'react';
 import Markdown from 'react-native-markdown-display';
 
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     borderRadius: 10,
+    paddingBottom: Platform.OS === 'android' ? 25 : 0
   },
 });
 

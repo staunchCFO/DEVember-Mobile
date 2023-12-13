@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TextInput, Pressable } from 'react-native';
 import React, { useState } from 'react';
 import MarkdownDisplay from '../../../components/day3/MarkdownDisplay';
 
-const template = `# 🎉 Fun with Markdown!
+const template = `# 🎉 Fun Markdown with Staunch!
 
 ## 🚀 Introduction
 Welcome to this **fun and exciting** markdown guide! Let's dive into the world of Markdown and discover how it makes text formatting cool and easy!
