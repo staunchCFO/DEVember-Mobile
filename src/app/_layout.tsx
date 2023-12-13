@@ -2,12 +2,14 @@ import { Stack } from "expo-router";
 import React from 'react';
 import { useFonts, Inter_900Black, Inter_600SemiBold, Inter_400Regular } from "@expo-google-fonts/inter";
 import { AmaticSC_400Regular, AmaticSC_700Bold } from '@expo-google-fonts/amatic-sc'
-import * as SplashScreen from 'expo-splash-screen';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-SplashScreen.preventAutoHideAsync();
+import AnimatedSplashScreen from "../components/day4/AnimatedSplashScreen";
 
 export default function RootLayout() {
+    const [ appReady, setAppReady] = React.useState(false);
+    const [splashAnimationFinished, setSplashAnimationFinished] = React.useState(false);
+
     const [fontLoaded, fontError] = useFonts({
         Inter: Inter_900Black,
         InterRegular: Inter_400Regular,
@@ -18,13 +20,23 @@ export default function RootLayout() {
 
     React.useEffect(() => {
         if (fontLoaded || fontError) {
-            SplashScreen.hideAsync()
+            setAppReady(true)
         }
     }, [fontLoaded, fontError]);
 
-    if (!fontLoaded && !fontError) {
-        return null
+    const showAnimatedSplash = !appReady || !splashAnimationFinished;
+    if (showAnimatedSplash) {
+        return (
+        <AnimatedSplashScreen
+            onAnimationFinish={(isCancelled) => {
+            if (!isCancelled) {
+                setSplashAnimationFinished(true);
+            }
+            }}
+        /> 
+        );
     }
+
 
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
